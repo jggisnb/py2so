@@ -31,7 +31,7 @@ def delete_ofile_of_build(path):
         if os.path.isfile(fnp) and fnp.endswith(".o"):
             os.remove(fnp)
         elif os.path.isdir(fnp):
-            delete_cfile_of_build(fnp)
+            delete_ofile_of_build(fnp)
 
 def delete_build():
     if os.path.exists("build"):
@@ -92,7 +92,7 @@ if yes.lower().strip() == "yes":
         for bd in builddirs:
             if bd.startswith("lib."):
                 tar_path = os.path.join(os.path.dirname(__file__),"build",bd,os.path.split(input_folder)[1])
-                delete_cfile_of_build(tar_path)
+                delete_ofile_of_build(tar_path)
                 if keep_cfile == 0:
                     for p in paths:
                         if os.path.exists(p + ".c"):os.remove(p + ".c")
