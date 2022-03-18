@@ -24,6 +24,15 @@ def Get_allpath_from_dir(dir_path,paths:list,exlude_files,unchanged_files,suffix
             if is_not_startp:
                 unchanged_files.append(fnp)
 
+def delete_ofile_of_build(path):
+    dirs = os.listdir(path)
+    for d in dirs:
+        fnp = os.path.join(path, d)
+        if os.path.isfile(fnp) and fnp.endswith(".o"):
+            os.remove(fnp)
+        elif os.path.isdir(fnp):
+            delete_cfile_of_build(fnp)
+
 def delete_build():
     if os.path.exists("build"):
         shutil.rmtree(os.path.join(os.path.dirname(__file__),"build"))
@@ -82,7 +91,13 @@ if yes.lower().strip() == "yes":
         libpath = nan
         for bd in builddirs:
             if bd.startswith("lib."):
-                shutil.copytree(os.path.join(os.path.dirname(__file__),"build",bd), output_folder)
+                tar_path = os.path.join(os.path.dirname(__file__),"build",bd,os.path.split(input_folder)[1])
+                delete_cfile_of_build(tar_path)
+                if keep_cfile == 0:
+                    for p in paths:
+                        if os.path.exists(p + ".c"):os.remove(p + ".c")
+                        if os.path.exists(p + ".pyx"):os.remove(p + ".pyx")
+                shutil.copytree(tar_path, output_folder)
                 break
 
         for uc in unchange_arr:
@@ -94,13 +109,6 @@ if yes.lower().strip() == "yes":
                 os.makedirs(target_dir)
             shutil.copyfile(source,target)
 
-        if keep_cfile == 0:
-            for p in paths:
-                os.remove(p+".c")
-                os.remove(p+".pyx")
-                new_p = output_folder + p.replace(input_folder, nan)
-                if os.path.exists(new_p):
-                    os.remove(new_p + ".pyx")
         delete_build()
 
         os.remove("setup.py")
