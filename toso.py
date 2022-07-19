@@ -82,7 +82,7 @@ if yes.lower().strip() == "yes":
         libpath = nan
         for bd in builddirs:
             if bd.startswith("lib."):
-                tar_path = os.path.join(os.path.dirname(__file__),"build",bd,os.path.split(input_folder)[1])
+                tar_path = os.path.join(os.path.dirname(__file__),"build",bd)
                 if keep_cfile == 0:
                     for p in paths:
                         if os.path.exists(p + ".c"):os.remove(p + ".c")

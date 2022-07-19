@@ -2,20 +2,6 @@
 <project version="4">
   <component name="PublishConfigData">
     <serverData>
-      <paths name="root@192.168.5.15:22">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="root@192.168.5.179:22">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
       <paths name="root@192.168.5.22:22">
         <serverdata>
           <mappings>
@@ -23,7 +9,7 @@
           </mappings>
         </serverdata>
       </paths>
-      <paths name="root@192.168.5.22:60001">
+      <paths name="root@192.168.5.35:10003">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
